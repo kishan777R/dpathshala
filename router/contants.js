@@ -6,8 +6,8 @@ const allconstlocal = module.exports ={
 "server_version_app":1
 };
 const allconst = module.exports ={
-    "dashboardpath":'http://localhost:4200/',
-    "serverpath":'http://54.80.76.39:3100/',
+    "dashboardpath":'https://dashboard.dpathshala.live',
+    "serverpath":'https://awsapi.dpathshala.live/',
 "websitepath":'https://dpathshala.live',
 "server_version_app":1
 };
