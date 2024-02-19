@@ -36,14 +36,16 @@ const Notifications = require('../model/notifications');
 const urltocheckordertatus = "https://xcellinsindiapro.com/sale/TxnStatus.php?order_id=";
 
 const allconst = require('./contants');
-const adminemail = 'kishanrock777@gmail.com';
+const adminemail = 'contact@dpathshala.live';
 
-const myemail = "digitalpathshalalive@gmail.com";
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
+const myemail = "contact@dpathshala.live";
+ 
+let transporter = nodemailer.createTransport({
+  host: 'dpathshala.live',
+  port: 465,
   auth: {
     user: myemail,
-    pass: '9868332939'
+    pass: '!T(AqGG*ymhF'
   }
 });
 const multipart = require('connect-multiparty');
