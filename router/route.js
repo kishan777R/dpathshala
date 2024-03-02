@@ -39,7 +39,7 @@ const allconst = require('./contants');
 const adminemail = 'contact@dpathshala.live';
 
 const myemail = "contact@dpathshala.live";
- 
+
 let transporter = nodemailer.createTransport({
   host: 'dpathshala.live',
   port: 465,
@@ -2804,7 +2804,7 @@ router.post('/student_forget_password', (req, res, next) => {
         if (error) {
           res.json({ message: "Something is wrong in sending email !", status: "ERROR" });
         } else {
-          res.json({ message: "Password has been sent successfully to your Email Id !", status: "SUCCESS" });
+           res.json({ message: "Password has been sent successfully to your Email Id !", status: "SUCCESS" });
         }
       });
 
@@ -3497,11 +3497,19 @@ function sendandSaveOTP(appHashString, mobile, action, c_id_int, res, usernamefo
     }
   });
 }
-
-
+ 
 /////////////////////// otp end//////////////////////////////////////////
 
-
+ router.get('/getallfilesnameinfoldercourse', (req, res, next) => {
+  const testFolder = './public/uploads/course/';
+  const fs = require('fs');
+  
+  fs.readdir(testFolder, (err, files) => {
+    files.forEach(file => {
+      console.log(file);
+    });
+  });
+});
 /////////////////////// COURSES start//////////////////////////////////////////
 router.get('/courses', (req, res, next) => {
   Course.find({ $and: [{ "tablestatus": "TRUE" }, { "parent_course": '0' }] }, function (err, Courselist) {
@@ -3511,8 +3519,8 @@ router.get('/courses', (req, res, next) => {
 router.get('/courses_subcourse_both', (req, res, next) => {
 
   Course.find({ $and: [{ "tablestatus": "TRUE" }, { "wheretoshowinwebsite": { $ne: 'UPCOMING' } }] }, function (err, Courselist) {
-
-    res.json(Courselist);
+   
+     res.json(Courselist);
   }).sort({ _id: 1 });
 });
 router.get('/courses_subcourse_both_upcomming', (req, res, next) => {
@@ -7060,7 +7068,7 @@ function updateStatusOfOrder(res, order_table_id, order_status) {
                                   couponPercent: OrderData.couponPercent,
                                   amount: 0,
                                   itemamount: 0,
-                                  discount:0,
+                                  discount: 0,
                                   taxableamount: 0,
                                   igst: 0,
                                   cgst: 0,
@@ -8693,6 +8701,7 @@ var PaytmConfig = {
 }
 
 const checksum_lib = require('./checksum');
+const video = require('../model/video');
 
 router.get('/payoptionprovidedbyPAYTM/:orderId/:c_id_int/:amount', (req, res, next) => {
   var c_id_int = +req.params.c_id_int;
@@ -9830,10 +9839,10 @@ router.post('/generateBackenedorder', (req, res, next) => {
   //   key_id: key_id,
   //   key_secret: '4vXK6ldx0cm6msN1ys00Ptcs'
   // })
-  var key_id = 'rzp_test_080GPiVpRfZ8Jr';
+  var key_id ='rzp_live_nW73EkgAYMhQNk';// 'rzp_test_080GPiVpRfZ8Jr';
   var instance = new Razorpay({
     key_id: key_id,
-    key_secret: 'Z5lPcnT6EfO4z5rYSy33nUw9'
+    key_secret: 'IG6zERgF0bWD6LdmKpAl7OSz'  //'Z5lPcnT6EfO4z5rYSy33nUw9'
   })
 
 
@@ -9863,3 +9872,27 @@ var formatDate = function (date) {
   return formatDateComponent(date.getMonth() + 1) + '/' + formatDateComponent(date.getDate()) + '/' + date.getFullYear();
 };
 module.exports = router;
+
+
+// let searchArr = [];
+// searchArr.push({ "serverpath":  'http://localhost:3100/'   });
+
+// Videos.updateMany({ $and: searchArr }, { $set: { 'serverpath': serverpath } }, (errupdateMany, Qr) => {
+
+//   if (err) {
+//     res.json({ message: "Something is wrong " + err, status: "ERROR" });
+//   } else {
+
+
+//     Course.updateMany({ $and: searchArr }, { $set: { 'serverpath': serverpath } }, (errupdateMany, Qr) => {
+
+//       if (err) {
+//         res.json({ message: "Something is wrong " + err, status: "ERROR" });
+//       } else {
+
+
+//         res.json({ message: serverpath, status: "SUCCESS" });
+//       }
+//     });
+//   }
+// });
